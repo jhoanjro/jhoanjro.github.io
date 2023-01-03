@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historieta con SVG</title>
+    <link rel="stylesheet" href="svgcss3.css">
+    <link rel="icon" href="../SVGRUPAL/dinos1.png">
+    <!--
+        Graficar una historia de 4 páginas HTML, usando SVG.
+        Nombres: Alejandro Constante, Jhoan Ramón
+        Fecha: 12/26/2022
+    -->
+</head>
+<body>
+
+    <svg width="1500" height="720">
+
+
+        <text x="80" y="20" style="font-family: 'Poppins', sans-serif; font-size: 20;">Mala Suerte - Alejandro Constante & Jhoan Ramon</text>
+
+
+        <linearGradient id= "gradiente1" x1="0" y1="0" x2="0" y2="100%">
+            <stop offset="50%" stop-color="#738295" />
+            <stop offset="100%" stop-color="#9C8478" />
+            </linearGradient>
+
+
+        <!--CIELO-->
+
+        <rect id="fondo" width="90%" height="42%" fill="url(#gradiente1)" x="90" y="30"/>
+
+
+        <!--ESTRELLAS-->
+
+        <rect width="10" height="10" fill="white" x="130" y="70">
+            <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 130 70"
+            to="360 130 80"
+            dur="10s"
+            repeatCount="indefinite"/>
+        </rect>
+
+
+
+
+        <rect width="10" height="10" fill="white" x="320" y="140">
+            <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 320 140"
+            to="-360 320 150"
+            dur="10s"
+            repeatCount="indefinite"/>
+        </rect>
+
+
+
+
+
+        <rect width="10" height="10" fill="white" x="170" y="210">
+            <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 170 210"
+            to="-360 170 220"
+            dur="10s"
+            repeatCount="indefinite"/>
+        </rect>
+
+
+
+
+
+
+
+
+        <rect width="10" height="10" fill="white" x="550" y="70">
+            <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 550 70"
+            to="360 550 80"
+            dur="10s"
+            repeatCount="indefinite"/>
+        </rect>
+
+
+
+
+
+
+
+        <rect width="10" height="10" fill="white" x="650" y="240">
+            <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 650 240"
+            to="-360 650 250"
+            dur="10s"
+            repeatCount="indefinite"/>
+        </rect>
+
+
+
+
+
+
+
+        
+        <rect width="10" height="10" fill="white" x="920" y="140">
+            <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 920 140"
+            to="-360 920 150"
+            dur="10s"
+            repeatCount="indefinite"/>
+        </rect>
+
+
+
+
+
+
+
+        <rect width="10" height="10" fill="white" x="1350" y="70">
+            <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 1350 70"
+            to="-360 1350 80"
+            dur="10s"
+            repeatCount="indefinite"/>
+        </rect>
+
+
+
+
+
+        <rect width="10" height="10" fill="white" x="1200" y="200">
+            <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 1200 200"
+            to="360 1200 210"
+            dur="10s"
+            repeatCount="indefinite"/>
+        </rect>
+
+
+
+
+
+        <rect width="10" height="10" fill="white" x="1390" y="260">
+            <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 1390 260"
+            to="-360 1390 270"
+            dur="10s"
+            repeatCount="indefinite"/>
+        </rect>
+
+
+
+
+        <!--BORDE DE CAMPO 2-->
+        <ellipse cx="770" cy="350" rx="680" ry="70" fill="rgb(92, 114, 80)"/>
+
+        <rect id="fondo" width="90%" height="30%" fill="rgb(92, 114, 80)" x="90" y="390"/>
+
+
+
+
+        <!--BORDE DE CAMPO 1-->
+        <ellipse cx="770" cy="490" rx="680" ry="70" fill="#8ca478"/>
+
+        <rect id="fondo" width="90%" height="30%" fill="#8ca478" x="90" y="480"/>
+
+
+
+        <!--MARCO-->
+
+        <rect id="marco" width="90%" height="90%" fill="rgba(0, 0, 0, 0)" style="stroke:rgb(0, 0, 0); stroke-width:20px;" x="90" y="40"/>
+        
+        
+        <!--PASTO-->
+
+        <!-- 
+                                                 x   y    x   y    x   y
+                                                 Inf.der  Inf.izq  Sup
+        -->
+        <polygon fill="rgb(92, 114, 80)" points="285 630, 300 630, 275 550"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="285 630, 300 630, 325 550"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="310 630, 320 630, 340 560"/>
+
+
+
+
+        <polygon fill="rgb(92, 114, 80)" points="605 550, 620 550, 595 470"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="625 550, 640 550, 620 470"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="630 550, 640 550, 680 480"/>
+        
+
+
+
+
+        <polygon fill="rgb(92, 114, 80)" points="1005 510, 1020 510, 995 430"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="1025 510, 1040 510, 1020 430"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="1030 510, 1040 510, 1080 440"/>
+        
+
+
+
+
+        <polygon fill="rgb(92, 114, 80)" points="885 630, 900 630, 875 550"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="885 630, 900 630, 925 550"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="910 630, 920 630, 940 560"/>
+
+
+
+
+
+
+
+        <!--CIRCULO DE TEXTO-->
+        <ellipse cx="600" cy="190" rx="200" ry="50" fill="white" stroke="black" stroke-width="5">
+        <animateMotion path="M 0 0 L 0 -50" dur="3s"/>
+        </ellipse>
+
+        <polygon fill="white" stroke="black" stroke-width="5" points="480 235, 550 240, 450 270">
+        <animateMotion path="M 0 0 L 0 -50" dur="3s"/>
+        </polygon>
+
+
+
+        <g transform="translate(460,200)">
+            <text id="TextElement" x="0" y="0" style="font-family: 'Poppins', sans-serif; font-size: 25;">Ohhh, me encantaría!
+            <animateMotion path="M 0 0 L 0 -50" dur="3s"/>
+            </text>
+            </g>
+
+
+
+
+
+
+
+
+    </svg>
+
+    <img id="CUADRO3" src="dinos3.png" alt="CUADRO3">
+    
+    <div id="pasarpag">
+        <a href="../SVGRUPAL/svg4.html">></a>
+    </div>
+
+
+    <div id="pasarpag2">
+        <a href="../SVGRUPAL/svg2.html"><</a>
+    </div>
+
+</body>
+</html>

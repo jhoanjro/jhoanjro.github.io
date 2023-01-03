@@ -1,0 +1,83 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@300&display=swap');
+/*
+        Graficar una historia de 4 páginas HTML, usando SVG.
+        Nombres: Alejandro Constante, Jhoan Ramón
+        Fecha: 12/26/2022
+*/
+
+#CUADRO3{
+    width: 1500px;
+    height: 720px;
+    position: relative;
+    bottom: 755px;
+    right: 58px;
+    margin-bottom: -700px;
+}
+
+
+#pasarpag{
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.593);
+    border-radius: 50px;
+    position: relative;
+    left: 1400px;
+    bottom: 450px;
+    transition: all 0.5s;
+}
+
+#pasarpag a{
+    position: relative;
+    text-decoration: none;
+    color: white;
+    font-size: 70px;
+    margin-left: 35px;
+    top: 10px;
+}
+
+#pasarpag:hover{
+    transform: translateY(-15px);
+    background-color: rgba(255, 255, 255, 0.821);
+}
+
+#pasarpag a:hover{
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+#pasarpag2{
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.593);
+    border-radius: 50px;
+    position: relative;
+    left: 20px;
+    bottom: 540px;
+    transition: all 0.5s;
+}
+
+#pasarpag2 a{
+    position: relative;
+    text-decoration: none;
+    color: white;
+    font-size: 70px;
+    margin-left: 35px;
+    top: 10px;
+}
+
+#pasarpag2:hover{
+    transform: translateY(-15px);
+    background-color: rgba(255, 255, 255, 0.821);
+}
+
+#pasarpag2 a:hover{
+    color: black;
+}

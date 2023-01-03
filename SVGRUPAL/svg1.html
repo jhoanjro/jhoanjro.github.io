@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historieta con SVG</title>
+    <link rel="stylesheet" href="svgcss.css">
+    <link rel="icon" href="../SVGRUPAL/dinos1.png">
+    <!--
+        Graficar una historia de 4 páginas HTML, usando SVG.
+        Nombres: Alejandro Constante, Jhoan Ramón
+        Fecha: 12/26/2022
+    -->
+</head>
+<body>
+
+    <svg width="1500" height="720">
+
+
+        <text x="80" y="20" style="font-family: 'Poppins', sans-serif; font-size: 20;">Mala Suerte - Alejandro Constante & Jhoan Ramon</text>
+
+
+        <rect id="marco" width="90%" height="90%" fill="rgba(0, 0, 0, 0)" style="stroke:rgb(0, 0, 0); stroke-width:20px;" x="90" y="40"/>
+
+        <rect id="fondo" width="90%" height="90%" fill="#8ca478" x="90" y="40"/>
+        
+        
+        <!--PASTO-->
+
+        <!-- 
+                                                 x   y    x   y    x   y
+                                                 Inf.der  Inf.izq  Sup
+        -->
+        <polygon fill="rgb(92, 114, 80)" points="185 630, 200 630, 175 550"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="185 630, 200 630, 225 550"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="210 630, 220 630, 240 560"/>
+
+
+
+
+        <polygon fill="rgb(92, 114, 80)" points="155 330, 170 330, 145 250"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="175 330, 190 330, 170 250"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="180 330, 190 330, 210 260"/>
+        
+
+
+
+
+
+
+
+        <polygon fill="rgb(92, 114, 80)" points="1355 330, 1370 330, 1345 250"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="1375 330, 1390 330, 1370 250"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="1380 330, 1390 330, 1410 260"/>
+
+
+
+
+
+
+
+        <polygon fill="rgb(92, 114, 80)" points="1185 130, 1200 130, 1175 50"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="1185 130, 1200 130, 1225 50"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="1210 130, 1220 130, 1240 60"/>
+
+
+
+
+
+
+
+
+
+        <polygon fill="rgb(92, 114, 80)" points="415 130, 400 130, 375 50"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="385 130, 400 130, 345 50"/>
+
+        <polygon fill="rgb(92, 114, 80)" points="410 130, 420 130, 440 60"/>
+
+
+        
+
+
+        <!--SOMBRA-->
+        <ellipse cx="950" cy="390" rx="500" ry="100" fill="rgb(92, 114, 80)" transform='rotate(5)'/>
+
+
+
+        <!--CIRCULO DE TEXTO-->
+        <ellipse cx="500" cy="590" rx="200" ry="50" fill="white" stroke="black" stroke-width="5">
+        <animateMotion path="M 0 0 L 0 -50" dur="3s"/>
+        </ellipse>
+
+        <polygon fill="white" stroke="black" stroke-width="5" points="600 635, 650 625, 690 650">
+        <animateMotion path="M 0 0 L 0 -50" dur="3s"/>
+        </polygon>
+
+
+
+        <g transform="translate(400,600)">
+            <text id="TextElement" x="0" y="0" style="font-family: 'Poppins', sans-serif; font-size: 30;">Espera Karen!
+            <animateMotion path="M 0 0 L 0 -50" dur="3s"/>
+            
+            </text>
+            </g>
+
+
+
+
+
+            <image x="50" y="-32" width="1500" height="720"
+            xlink:href="dinos1.png">
+
+
+    </svg>
+
+    
+    <div id="pasarpag">
+        <a href="../SVGRUPAL/svg2.html">></a>
+    </div>
+
+</body>
+</html>
