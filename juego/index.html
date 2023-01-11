@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En el bosque</title>
+    <link rel="stylesheet" href="juego.css">
+
+</head>
+<body>
+    
+  <div><h1>En el bosque</h1><p>
+    Usa las teclas: arriba, abajo, derecha e izquierda 
+    para navegar en el bosque y encontrar la esmeralda.</p>
+    </div>
+    
+    <img id="tabla" src="../juego/img/tabla.png">
+  <canvas id="canvas">   
+    </canvas>
+
+
+    <button id="reiniciarB" onclick="reiniciar();"> <img src="../juego/img/flecha.png"> </button>
+<script>
+  (function () {
+    var requestAnimationFrame = window.requestAnimationFrame 
+    || window.mozRequestAnimationFrame 
+    || window.webkitRequestAnimationFrame 
+    || window.msRequestAnimationFrame;
+    window.requestAnimationFrame = requestAnimationFrame;})();
+
+var canvas = document.getElementById("canvas"),
+    ctx = canvas.getContext("2d"),
+    width = 1000,
+    height = 550,
+
+   
+    jugador = {
+        x: 100,
+        y: 450,
+        width: 30,
+        height: 30,
+        speed: 3,
+        velX: 0,
+        velY: 0,
+        color: 'black',
+        
+        jumping: false,
+        grounded: false,
+
+
+    },
+    teclas = [],
+    deslizar = 0.8,
+    gravedad = 0.4,
+    cajas = [],
+    mejora = [];  
+
+
+// TOKENS DE EFECTOS NEGATIVOS Y POSITIVOS
+mejora.push({
+        x: 590,
+        y: 370,
+        width: 20,
+        height: 20,
+        color: 'red',
+        effect: 'reducir'
+});
+
+
+    mejora.push({
+        x: 410,
+        y: 180,
+        width: 20,
+        height: 20,
+        color: 'red',
+        effect: 'reducir'
+});
+
+//************************
+//ENTRADA
+mejora.push({
+        x: 40,
+        y: 320,
+        width: 20,
+        height: 20,
+        color: 'yellow',
+        effect: 'tele',
+  		rotate: 20,
+        px: 20,
+        py: 370,
+        stay: true
+});
+
+mejora.push({
+        x: 130,
+        y: 90,
+        width: 20,
+        height: 20,
+        color: 'lime',
+        effect: 'ganar',
+        stay: true
+    });
+
+// DIMENSIONES
+cajas.push({
+    x: 0,
+    y: height/4+10,
+    width: 10,
+    height: height,
+    color: 'violet'
+});
+cajas.push({
+    x: 0,
+    y: 0,
+    width: 10,
+    height: height/4-15,
+    color: 'green'
+});
+cajas.push({
+    x: 0,
+    y: height - 10,
+    width: width,
+    height: 50,
+    color: 'orange'
+});
+cajas.push({
+    x: width - 10,
+    y: 0,
+    width: 50,
+    height: height,
+    color: 'yellow'
+});
+cajas.push({
+    x: 280,
+    y: 210,
+    width: 300,
+    height: 10,
+    color: 'blue'
+});
+cajas.push({
+    x: 100,
+    y: 120,
+    width: 80,
+    height: 10,
+    color: 'blue'
+});
+cajas.push({
+    x: 650,
+    y: 250,
+    width: 150,
+    height: 10,
+    color: 'red'
+});
+cajas.push({
+    x: 200,
+    y: 500,
+    width: 80,
+    height: 10,
+    color: 'black'
+});
+cajas.push({
+    x: 350,
+    y: 450,
+    width: 90,
+    height: 10,
+    color: '#655643'
+});
+cajas.push({
+    x: 750,
+    y: 360,
+    width: 50,
+    height: 10,
+    color: '#655643'
+});
+cajas.push({
+    x: 850,
+    y: 310,
+    width: 50,
+    height: 10,
+    color: '#655643'
+});
+cajas.push({
+    x: 160,
+    y: 280,
+    width: 50,
+    height: 10,
+    color: '#655643'
+});
+cajas.push({
+    x: 520,
+    y: 400,
+    width: 170,
+    height: 10,
+    color: '#655643'
+});
+cajas.push({
+    x: 0,
+    y: 350,
+    width: 90,
+    height: 10,
+    color: '#655643'
+});
+
+
+canvas.width = width;
+canvas.height = height;
+
+function tecladoymovimiento() {
+    // teclas
+    if (teclas[38] || teclas[32] || teclas[97]) {
+        //ARRIBA / ABAJO (ESPACIO)
+        if (!jugador.jumping && jugador.grounded) {
+            jugador.jumping = true;
+            jugador.grounded = false;
+            jugador.velY = -jugador.speed * 2.5;
+        }
+    }
+    if (teclas[39] || teclas[68]) {
+        //DERECHA
+        if (jugador.velX < jugador.speed) {
+            jugador.velX++;
+        }
+    }
+    if (teclas[37] || teclas[65]) {
+        //IZQUIERDA
+        if (jugador.velX > -jugador.speed) {
+            jugador.velX--;
+        }
+    }
+  
+  	
+
+    jugador.velX *= deslizar;
+    jugador.velY += gravedad;
+
+    ctx.clearRect(0, 0, width, height);
+    ctx.beginPath();
+    
+    jugador.grounded = false;
+    for (var i = 0; i < cajas.length; i++) {
+        ctx.fillStyle = cajas[i].color;
+        ctx.rect(cajas[i].x, cajas[i].y, cajas[i].width, cajas[i].height);
+        
+        var direccionJ = anchocajas(jugador, cajas[i]);
+
+        if (direccionJ === "l" || direccionJ === "r") {
+            jugador.velX = 0;
+            jugador.jumping = false;
+        } else if (direccionJ === "b") {
+            jugador.grounded = true;
+            jugador.jumping = false;
+        } else if (direccionJ === "t") {
+            jugador.velY *= -1;
+        }
+
+    }
+    
+    if(jugador.grounded){
+         jugador.velY = 0;
+    }
+    
+    jugador.x += jugador.velX;
+    jugador.y += jugador.velY;
+
+    //CREAR EL JUGADOR
+    ctx.fill();
+    ctx.fillStyle = jugador.color;
+    ctx.fillRect(jugador.x, jugador.y, jugador.width, jugador.height);
+    
+    //MEJORAS
+    for(var j = 0; j < mejora.length; j++){
+      ctx.save();
+      var cx = mejora[j].x + 0.5 * mejora[j].width,   
+      cy = mejora[j].y + 0.5 * mejora[j].height; 
+      ctx.translate(cx, cy);  
+      ctx.rotate( (Math.PI / 180) * 45);
+      if(mejora[j].effect  === 'tele'){
+        ctx.rotate( (Math.PI / 180) * mejora[j].rotate);
+        mejora[j].rotate = (Math.PI / 180) * mejora[j].rotate;
+      }
+      ctx.translate(-cx, -cy);
+      ctx.fillStyle = mejora[j].color;
+      ctx.fillRect(mejora[j].x, mejora[j].y, mejora[j].width, mejora[j].height);
+      ctx.restore();
+      
+      //EFECTOS DE MEJORA
+      if(anchocajas(jugador, mejora[j])!==null){
+
+        if (mejora[j].effect==='reducir'){
+          jugador.width= 10;
+          jugador.height= 10;
+          jugador.speed = 2;
+        }
+        else if (mejora[j].effect==='tele'){
+          jugador.x=mejora[j].px;
+          jugador.y=mejora[j].py;
+          jugador.speed = 4;
+        }
+        else if (mejora[j].effect==='ganar'){
+          var r = confirm("Ganaste!");
+          if (r == false) {
+               jugador.x=200;
+               jugador.y=200;
+          } else {
+               window.location.href = window.location.href;
+          }
+        }
+        if(mejora[j].stay!==true)
+        mejora[j].width=0;
+      }
+    }
+    requestAnimationFrame(tecladoymovimiento);
+}
+
+function anchocajas(A, B) {
+
+    //DEFINIR LOS ANCHOS Y ALTOS DE LAS CAJAS CAFES 
+    var vX = (A.x + (A.width / 2)) - ( B.x + ( B.width / 2)),
+        vY = (A.y + (A.height / 2)) - ( B.y + ( B.height / 2)),
+     
+        anchosC = (A.width / 2) + ( B.width / 2),
+        alturasC = (A.height / 2) + ( B.height / 2),
+        columna = null;
+
+    if (Math.abs(vX) < anchosC && Math.abs(vY) < alturasC) {
+        var oX = anchosC - Math.abs(vX),
+            oY = alturasC - Math.abs(vY);
+        if (oX >= oY) {
+            if (vY > 0) {
+                columna = "t";
+                A.y += oY;
+            } else {
+                columna = "b";
+                A.y -= oY;
+            }
+        } else {
+            if (vX > 0) {
+                columna = "l";
+                A.x += oX;
+            } else {
+                columna = "r";
+                A.x -= oX;
+            }
+        }
+    }
+    return columna;
+}
+
+document.body.addEventListener("keydown", function (e) {
+    teclas[e.keyCode] = true;
+});
+
+document.body.addEventListener("keyup", function (e) {
+    teclas[e.keyCode] = false;
+});
+
+
+window.addEventListener("load", function () {
+    tecladoymovimiento();
+});
+      
+
+function reiniciar(){
+            location.reload();
+}
+</script>
+
+</body>
+</html>
